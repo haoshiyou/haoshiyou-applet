@@ -1,13 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="hsy-detail">
+    <view class="kind-list">
+      <view wx:if="listing-content" class="kind-list-item">
+        <view class="kind-list-item-label">内容</view>
+        <view class="kind-list-item-value">North San Jose 95131 好房出租</view>
+      </view>
+      <view wx:if="listing-price" class="kind-list-item">
+        <text class="kind-list-item-label">价格</text>
+        <text class="kind-list-item-value">$1400</text>
+      </view>
+      <view wx:if="listing.addressCity" class="kind-list-item">
+        <text class="kind-list-item-label">位置</text>
+        <text class="kind-list-item-value">Mountain View</text>
+      </view>
+      <view wx:if="listing.hsyGroupNick" class="kind-list-item">
+        <text class="kind-list-item-label">联系</text>
+        <text class="kind-list-item-value">在好室友南湾群里搜索Charles Hu</text>
+      </view>
+    </view>
   </view>
 </view>

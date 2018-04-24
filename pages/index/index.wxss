@@ -1,21 +1,19 @@
 /**index.wxss**/
-.userinfo {
+.kind-list-item {
+  padding: 10rpx;
+  height: 80rpx;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  background-color: white; 
+  border: 1px black;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.kind-list-item-label {
+  flex: 1;
+  font-size: 14pt;
 }
 
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
+.kind-list-item-value {
+  font-size:10pt;
+  color: #888888;
 }

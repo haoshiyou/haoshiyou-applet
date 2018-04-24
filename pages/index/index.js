@@ -1,13 +1,15 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const hsyApiUrlBase = `http://haoshiyou-server-dev.herokuapp.com/api/HsyListings/`;
+const listingId = `group-collected-Charles%20Hu`;
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    hasListingInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    listing: {}
   },
   //事件处理函数
   bindViewTap: function() {
@@ -44,11 +46,27 @@ Page({
     }
   },
   getUserInfo: function(e) {
+
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  
+  getListing: function(e) {
+    wx.request({
+      url: hsyApiUrlBase + listingId,
+      success: res => {
+        console.log(`getListing requested HSY api, res = `);
+        this.setData({
+          listing: res.data,
+          hasListingInfo: true
+        })
+        console.log(`set hasListingInfo = true`);
+        console.log(res);
+      }
+    });
   }
 })
