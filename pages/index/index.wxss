@@ -1,19 +1,107 @@
 /**index.wxss**/
-.kind-list-item {
-  padding: 10rpx;
-  height: 80rpx;
+
+.root_container {
   display: flex;
-  align-items: flex-start;
-  background-color: white; 
-  border: 1px black;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10rpx;
 }
 
-.kind-list-item-label {
-  flex: 1;
-  font-size: 14pt;
+.row_item {
+  display: flex;
+  flex-direction: row;
+  padding-left: 16rpx;
+  padding-bottom: 22rpx;
+  padding-right: 26rpx;
+  align-content:center;
+  justify-content:space-around;
+  width:100%;
 }
 
-.kind-list-item-value {
-  font-size:10pt;
+.root_container .left_panel {
+  width: 400px;
+  margin-right: 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.root_container .left_panel .title {
+  font-size: 26rpx;
+  font-family: sans-serif;
+  margin-left: 8rpx;
+  margin-bottom: 16rpx;
+      display: block;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #353535;
+}
+
+.root_container .left_panel .price {
+  margin-bottom: 16rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.root_container .left_panel .price .image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 2rpx;
+}
+
+.root_container .left_panel .price .text {
+  font-size: 24rpx;
+  color: #46B3FB;
+}
+
+.root_container .left_panel .detail {
+  margin-bottom: 12rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.root_container .left_panel .detail .location {
+  margin-right: 116rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.root_container .left_panel .detail .location .image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 2rpx;
+}
+
+.root_container .left_panel .detail .location .text {
+  font-size: 24rpx;
   color: #888888;
+}
+
+.root_container .left_panel .detail .time_modified {
+  display: flex;
+  flex-direction: row;
+}
+
+.root_container .left_panel .detail .time_modified .image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 2rpx;
+}
+
+.root_container .left_panel .detail .time_modified .text {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+.root_container .right_panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root_container .right_panel .image {
+  width: 184rpx;
 }
