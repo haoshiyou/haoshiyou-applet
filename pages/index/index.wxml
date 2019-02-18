@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class='root_container'>
-  <view class='row_item' wx:for="{{allListing}}" wx:for-item="listing" >
+  <view class='row_item' data-listing="{{listing}}" bindtap="onClick" wx:for="{{allListing}}" wx:for-item="listing" >
     <view class='left_panel'>
       <view wx:if="{{listing.title}}" class="title">
         <text>{{listing.title}}</text>
@@ -25,5 +25,6 @@
       <image class='image' mode="widthFix"    
              src="http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_200,h_150,g_center/{{listing.imageIds[0]}}.jpg"/>
     </view>
+    <!-- </navigator> -->
   </view> 
 </view>

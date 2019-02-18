@@ -46,6 +46,12 @@ Page({
     }
     this.getAllListing()
   },
+  onClick: function(event) {
+    var listing = encodeURIComponent(JSON.stringify((event.currentTarget.dataset.listing)));
+    wx.navigateTo({
+      url: '../detail/detail?listing=' + listing
+    });
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
