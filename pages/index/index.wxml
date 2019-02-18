@@ -25,6 +25,5 @@
       <image class='image' mode="widthFix"    
              src="http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_200,h_150,g_center/{{listing.imageIds[0]}}.jpg"/>
     </view>
-    <!-- </navigator> -->
   </view> 
 </view>
