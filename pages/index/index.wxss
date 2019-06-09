@@ -20,77 +20,78 @@
   width:100%;
 }
 
-.root_container .left_panel {
-  width: 400px;
+.left_panel {
+  width: 500rpx;
   margin-right: 10rpx;
   display: flex;
   flex-direction: column;
 }
 
-.root_container .left_panel .title {
+.title {
   font-size: 26rpx;
   font-family: sans-serif;
   margin-left: 8rpx;
   margin-bottom: 16rpx;
   display: block;
   overflow: hidden;
+  width: 500rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: #353535;
 }
 
-.root_container .left_panel .price {
+.price {
   margin-bottom: 16rpx;
   display: flex;
   flex-direction: row;
 }
 
-.root_container .left_panel .price .image {
+.price .image {
   width: 34rpx;
   height: 34rpx;
   margin-right: 2rpx;
 }
 
-.root_container .left_panel .price .text {
+.price .text {
   font-size: 24rpx;
   color: #46B3FB;
 }
 
-.root_container .left_panel .detail {
+.detail {
   margin-bottom: 12rpx;
   display: flex;
   flex-direction: row;
 }
 
-.root_container .left_panel .detail .location {
+.location {
   margin-right: 116rpx;
   display: flex;
   flex-direction: row;
 }
 
-.root_container .left_panel .detail .location .image {
+.location .image {
   width: 34rpx;
   height: 34rpx;
   margin-right: 2rpx;
 }
 
-.root_container .left_panel .detail .location .text {
+.location .text {
   font-size: 24rpx;
   color: #888888;
 }
 
-.root_container .left_panel .detail .time_modified {
+.time_modified {
   display: flex;
   flex-direction: row;
 }
 
-.root_container .left_panel .detail .time_modified .image {
+.time_modified .image {
   width: 34rpx;
   height: 34rpx;
   margin-right: 2rpx;
 }
 
-.root_container .left_panel .detail .time_modified .text {
+.time_modified .text {
   font-size: 24rpx;
   color: #888888;
 }
@@ -101,6 +102,6 @@
   justify-content: center;
 }
 
-.root_container .right_panel .image {
+.right_panel .image {
   width: 184rpx;
 }

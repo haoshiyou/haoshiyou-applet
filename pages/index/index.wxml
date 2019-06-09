@@ -2,9 +2,7 @@
 <view class='root_container'>
   <view class='row_item' data-listing="{{listing}}" bindtap="onClick" wx:for="{{allListing}}" wx:for-item="listing" >
     <view class='left_panel'>
-      <view wx:if="{{listing.title}}" class="title">
-        <text>{{listing.title}}</text>
-      </view>
+      <text wx:if="{{listing.title}}" class="title">{{listing.title}}</text>
       <view wx:if="{{listing.price}}" class='price'>
         <image class='image' mode="widthFix" src='../../res/images/dollar-sign.png'></image>
         <text class='text'>{{listing.price}}/月</text>
@@ -21,9 +19,10 @@
       </view>
     </view>
 
-    <view wx:if="{{listing.imageIds.length > 0}}" class='right_panel'>
-      <image class='image' mode="widthFix"    
+    <view class='right_panel'>
+      <image wx:if="{{listing.imageIds.length > 0}}" class='image' mode="widthFix"    
              src="http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_200,h_150,g_center/{{listing.imageIds[0]}}.jpg"/>
+      <image wx:else class='image' mode="widthFix" src='../../res/images/default-profile.png'/>
     </view>
-  </view> 
+  </view>
 </view>

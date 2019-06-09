@@ -1,0 +1,52 @@
+var util = {
+  hasPhoneContact: function (listing) {
+    return listing.owner && listing.owner.contactPhone;
+  },
+  hasEmailContact: function (listing) {
+    return listing.owner && listing.owner.contactEmail;
+  },
+  hasGroupContact: function (listing) {
+    return listing.hsyGroupEnum && listing.hsyGroupNick;
+  },
+  hasContact: function (listing) {
+    return util.hasGroupContact(listing) 
+      || util.hasPhoneContact(listing)
+      || util.hasEmailContact(listing)
+  },
+  getGroupName: function (listing) {
+    switch (listing.hsyGroupEnum) {
+      case 'SanFrancisco':
+        return '三藩';
+      case 'SouthBayWest':
+        return '南湾西';
+      case 'SouthBayEast':
+        return '南湾东';
+      case 'EastBay':
+        return '东湾';
+      case 'MidPeninsula':
+        return '中半岛';
+      case 'Seattle':
+        return '西雅图';
+      case 'ShortTerm':
+        return '短租';
+      case 'TestGroup':
+        return '测试';
+      default:
+        return null;
+    }
+  },
+  getGroupNickName: function(listing) {
+    return listing.hsyGroupNick
+      ? listing.hsyGroupNick 
+      : listing.ownerId.replace('group-collected-', '')
+  },
+}
+
+module.exports = {
+  getGroupName: util.getGroupName,
+  getGroupNickName: util.getGroupNickName,
+  hasContact: util.hasContact,
+  hasEmailContact: util.hasEmailContact,
+  hasGroupContact: util.hasGroupContact,
+  hasPhoneContact: util.hasPhoneContact
+}

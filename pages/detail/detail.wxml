@@ -1,0 +1,51 @@
+<wxs module="util" src="./detail.wxs"></wxs>
+
+<view class='root-container'>
+  <swiper wx:if="{{listing.imageIds.length > 0}}" autoplay='True'
+    class='profiles-swiper' indicator-dots='True'  interval='2000'>
+    <block wx:for="{{listing.imageIds}}">
+      <swiper-item>
+        <image mode='aspectFit'
+          src='http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_750,h_450,g_center/{{item}}.jpg'/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view id='intro'>
+    <view id='title'>
+      <text>{{listing.title}}</text>
+    </view>
+    <view id='data'>
+      <view wx:if="{{listing.price}}" id='price'>
+        <image mode='widthFix' src='../../res/images/dollar-sign.png'></image>
+        <text>{{listing.price}}/月</text>
+      </view>
+      <view wx:if="{{listing.addressCity}}" id='location'>
+        <image mode='widthFix' src='../../res/images/location-sign.png'></image>
+        <text>{{listing.addressCity}}</text>
+      </view>
+      <view wx:if="{{listing.timeSinceModified}}" id='timeModified'>
+        <image mode='widthFix' src='../../res/images/clock-sign.png'></image>
+        <text>{{listing.timeSinceModified}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view id='description'>
+    <view class='title'>
+      <text>描述</text>
+    </view>
+    <view class='content'>
+      <text>{{listing.content}}</text>
+    </view>
+  </view>
+
+  <view id='contact' wx:if="{{util.hasContact(listing)}}">
+    <view class='title'>
+      <text>联系方式</text>
+    </view>
+    <view class='content' wx:if="{{util.hasGroupContact(listing)}}">
+      <text>请在【好室友】{{util.getGroupName(listing)}}群内搜索"{{util.getGroupNickName(listing)}}"</text>
+    </view>
+  </view>
+</view>

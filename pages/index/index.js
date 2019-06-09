@@ -2,13 +2,15 @@
 //获取应用实例
 const app = getApp()
 const hsyApiUrlBase =`https://haoshiyou-server-prod.herokuapp.com/api/HsyListings`;
+const listingLimit = 24;
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasListingInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    allListing: []
+    allListing: [],
+    pageNumber: 0,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -23,7 +25,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -100,35 +102,46 @@ Page({
     }
     return result;
   },
+  onReachBottom: function () {
+    var that = this;
+    var NewPageNumber = that.data.pageNumber + 1;
+    that.setData({
+      pageNumber: NewPageNumber
+    })
+    that.getAllListing();
+  },
   getAllListing: function (e) {
+    var that = this;
     wx.request({
       url: hsyApiUrlBase,
       header: {
         "Content-Type": "application/json",
       },
       data: {
-        "filter": 
-          {"where": {
+        "filter": {
+          "where": {
             "price": {
-              "lt": 5000 
+              "lt": 5000
             }
           },
           "order": "latestUpdatedOrBump DESC",
-          "limit": 24,
-          "offset": 0,
+          "limit": listingLimit,
+          "offset": listingLimit * that.data.pageNumber,
           "include": ["interactions", "owner"]
         }
       },
       success: res => {
         console.log(`getAllListing requested HSY api, res = `);
         for (let i = 0; i < res.data.length; ++i) {
-          res.data[i]['timeSinceModified'] = this.getTimeSinceModified(res.data[i].lastUpdated)
-        } 
-        this.setData({
-          allListing: res.data
-        })
+          res.data[i]['timeSinceModified'] = that.getTimeSinceModified(res.data[i].lastUpdated)
+        }
+        var newAllListing = that.data.allListing;
+        newAllListing = newAllListing.concat(res.data);
+        that.setData({
+          allListing: newAllListing
+        });
         console.log(res);
       }
     });
-  }
+  },
 })
