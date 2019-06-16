@@ -1,12 +1,12 @@
 <wxs module="util" src="./detail.wxs"></wxs>
 
 <view class='root-container'>
-  <swiper wx:if="{{listing.imageIds.length > 0}}" autoplay='True'
+  <swiper wx:if="{{imageURLs.length > 0}}" autoplay='True'
     class='profiles-swiper' indicator-dots='True'  interval='2000'>
-    <block wx:for="{{listing.imageIds}}">
-      <swiper-item>
+    <block wx:for="{{imageURLs}}">
+      <swiper-item bindtap="swiperClick">
         <image mode='aspectFit'
-          src='http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_750,h_450,g_center/{{item}}.jpg'/>
+          src='{{item}}' data-imageURL="{{item}}"/>
       </swiper-item>
     </block>
   </swiper>
