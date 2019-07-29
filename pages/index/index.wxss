@@ -1,107 +1,54 @@
 /**index.wxss**/
+@import "listing.wxss";
 
-.root_container {
-  display: flex;
-  flex-direction: column;
+page, #root-container {
+  height: 100%;
+}
+
+#tab-bar {
+  height: 80rpx;
+  background-color: #21b3fe;
+  color: #fff;
+  font-size: 14px;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.tab-item {
+  width: 120rpx;
+  text-align: center;
+  color: #e0e0e0;
+  font-weight: 400;
+}
+
+.tab-item-active {
+  color: #fff;
+}
+
+#tab-indicator {
+  position: absolute;
+  width: 0rpx;
+  height: 6rpx;
+  background-color: #fff;
+  bottom: 0;
+  left: 0;
+}
+
+.swiper {
+  flex: 1;
   justify-content:space-around;
   align-items: center;
   box-sizing: border-box;
-  padding: 10rpx;
+  margin-top: 5px;
 }
 
-.row_item {
-  display: flex;
-  flex-direction: row;
-  padding-left: 16rpx;
-  padding-bottom: 22rpx;
-  padding-right: 26rpx;
-  align-content:center;
-  justify-content:space-around;
-  width:100%;
+.scroll-view {
+  height: 100%;
 }
 
-.left_panel {
-  width: 500rpx;
-  margin-right: 10rpx;
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  font-size: 26rpx;
-  font-family: sans-serif;
-  margin-left: 8rpx;
-  margin-bottom: 16rpx;
-  display: block;
-  overflow: hidden;
-  width: 500rpx;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: #353535;
-}
-
-.price {
-  margin-bottom: 16rpx;
-  display: flex;
-  flex-direction: row;
-}
-
-.price .image {
-  width: 34rpx;
-  height: 34rpx;
-  margin-right: 2rpx;
-}
-
-.price .text {
-  font-size: 24rpx;
-  color: #46B3FB;
-}
-
-.detail {
-  margin-bottom: 12rpx;
-  display: flex;
-  flex-direction: row;
-}
-
-.location {
-  margin-right: 116rpx;
-  display: flex;
-  flex-direction: row;
-}
-
-.location .image {
-  width: 34rpx;
-  height: 34rpx;
-  margin-right: 2rpx;
-}
-
-.location .text {
-  font-size: 24rpx;
-  color: #888888;
-}
-
-.time_modified {
-  display: flex;
-  flex-direction: row;
-}
-
-.time_modified .image {
-  width: 34rpx;
-  height: 34rpx;
-  margin-right: 2rpx;
-}
-
-.time_modified .text {
-  font-size: 24rpx;
-  color: #888888;
-}
-
-.root_container .right_panel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right_panel .image {
-  width: 184rpx;
+.row-item {
+  align-content: center;
+  justify-content: space-around;
+  width: 100%;
 }

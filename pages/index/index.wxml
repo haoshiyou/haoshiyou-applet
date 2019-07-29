@@ -1,28 +1,24 @@
 <!--index.wxml-->
-<view class='root_container'>
-  <view class='row_item' data-listing="{{listing}}" bindtap="onClick" wx:for="{{allListing}}" wx:for-item="listing" >
-    <view class='left_panel'>
-      <text wx:if="{{listing.title}}" class="title">{{listing.title}}</text>
-      <view wx:if="{{listing.price}}" class='price'>
-        <image class='image' mode="widthFix" src='../../res/images/dollar-sign.png'></image>
-        <text class='text'>{{listing.price}}/月</text>
-      </view>
-      <view wx:if="{{listing.addressCity}}" class="detail">
-        <view wx:if="{{listing.addressCity}}" class="location">
-          <image class='image' mode="widthFix" src='../../res/images/location-sign.png'></image>
-          <text class='text'>{{listing.addressCity}}</text>
-        </view>
-        <view wx:if="{{listing.timeSinceModified}}" class="time_modified">
-          <image class='image' mode="widthFix" src='../../res/images/clock-sign.png'></image>
-          <text class='text'>{{listing.timeSinceModified}}</text>
-        </view>
-      </view>
-    </view>
 
-    <view class='right_panel'>
-      <image wx:if="{{listing.imageIds.length > 0}}" class='image' mode="widthFix"    
-             src="http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_200,h_150,g_center/{{listing.imageIds[0]}}.jpg"/>
-      <image wx:else class='image' mode="widthFix" src='../../res/images/default-profile.png'/>
-    </view>
+<import src="listing.wxml"/>
+
+<view class="flex-column" id="root-container">
+  <view class="flex-row" id="tab-bar">
+    <block wx:for="{{groups}}" wx:for-index='key'>
+      <text id="{{key}}" class="{{activeGroupId == key}} ? 'tab-item ' : 'tab-item-active'" bindtap='tabClick'>{{item.name}}</text>
+    </block>
+    <view id="tab-indicator" animation="{{indicatorAnim}}"></view>
   </view>
+
+  <swiper class="swiper" current-item-id="{{activeGroupId}}" bindchange="tabChange">
+    <block wx:for="{{groups}}" wx:for-index="key">
+      <swiper-item item-id="{{key}}">
+        <scroll-view scroll-y="true" class="scroll-view" bindscrolltolower="onReachBottom">
+          <view class="flex-row row-item" data-listing="{{listing}}" bindtap="onClick" wx:for="{{groups[key].listings}}" wx:for-item="listing">
+            <template is="listing" data="{{...listing}}"/>
+          </view>
+        </scroll-view>
+      </swiper-item>
+    </block>
+  </swiper>
 </view>

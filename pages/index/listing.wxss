@@ -1,0 +1,87 @@
+/**listing.wxss**/
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+#left-panel {
+  width: 500rpx;
+}
+
+#title {
+  font-size: 26rpx;
+  font-family: sans-serif;
+  margin-left: 8rpx;
+  margin-bottom: 16rpx;
+  display: block;
+  overflow: hidden;
+  width: 500rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #353535;
+}
+
+#price {
+  margin-bottom: 16rpx;
+}
+
+#price image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 2rpx;
+}
+
+#price text {
+  font-size: 24rpx;
+  color: #46B3FB;
+}
+
+#detail {
+  margin-bottom: 12rpx;
+}
+
+#location {
+  margin-right: 116rpx;
+}
+
+#location image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 2rpx;
+}
+
+#location text {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+#time-modified {
+  align-items: center;
+  justify-content: center;
+}
+
+#time-modified image {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 2rpx;
+}
+
+#time-modified text {
+  font-size: 24rpx;
+  color: #888888;
+}
+
+#right-panel {
+  align-items: center;
+  justify-content: center;
+}
+
+#right-panel image {
+  width: 184rpx;
+}

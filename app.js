@@ -35,6 +35,16 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    groups: {
+      'SanFrancisco': '三藩',
+      'SouthBayWest': '南湾西',
+      'SouthBayEast': '南湾东',
+      'EastBay': '东湾',
+      'MidPeninsula': '中半岛',
+      'Seattle': '西雅图',
+      'ShortTerm': '短租',
+      // 'TestGroup': '测试'
+    },
   }
 })

@@ -5,8 +5,7 @@
     class='profiles-swiper' indicator-dots='True'  interval='2000'>
     <block wx:for="{{imageURLs}}">
       <swiper-item bindtap="swiperClick">
-        <image mode='aspectFit'
-          src='{{item}}' data-imageURL="{{item}}"/>
+        <image mode='aspectFit' src='{{item}}' data-imageURL="{{item}}"/>
       </swiper-item>
     </block>
   </swiper>
@@ -45,7 +44,7 @@
       <text>联系方式</text>
     </view>
     <view class='content' wx:if="{{util.hasGroupContact(listing)}}">
-      <text>请在【好室友】{{util.getGroupName(listing)}}群内搜索"{{util.getGroupNickName(listing)}}"</text>
+      <text>请在【好室友】{{groups[listing.hsyGroupEnum]}}群内搜索"{{util.getGroupNickName(listing)}}"</text>
     </view>
   </view>
 </view>

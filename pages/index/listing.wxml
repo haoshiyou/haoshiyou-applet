@@ -1,0 +1,26 @@
+
+<template name="listing">
+  <view class="flex-column" id="left-panel">
+    <text wx:if="{{title}}" id="title">{{title}}</text>
+    <view wx:if="{{price}}" class="flex-row" id="price">
+      <image class="image" mode="widthFix" src="../../res/images/dollar-sign.png"></image>
+      <text class="text">{{price}}/月</text>
+    </view>
+    <view wx:if="{{addressCity}}" class="flex-row" id="detail">
+      <view wx:if="{{addressCity}}" class="flex-row" id="location">
+        <image mode="widthFix" src="../../res/images/location-sign.png"></image>
+        <text>{{addressCity}}</text>
+      </view>
+      <view wx:if="{{timeSinceModified}}" class="flex-row" id="time-modified">
+        <image mode="widthFix" src="../../res/images/clock-sign.png"></image>
+        <text>{{timeSinceModified}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view id="right-panel">
+    <image wx:if="{{imageIds.length > 0}}" mode="widthFix"    
+           src="http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_200,h_150,g_center/{{imageIds[0]}}.jpg"/>
+    <image wx:else mode="widthFix" src="../../res/images/default-profile.png"/>
+  </view>
+</template>

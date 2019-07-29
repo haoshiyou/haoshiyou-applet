@@ -1,18 +1,20 @@
+const app = getApp()
 Page({
   data: {
     listing: {},
-    imageURLs: {},
+    imageURLs: [],
+    groups: {},
   },
   onLoad: function (options) {
-    this.setData({
-      listing: JSON.parse(decodeURIComponent(options.listing))
-    });
-    var baseURL = 'http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,w_750,h_450,g_center/';
+    var listing = JSON.parse(decodeURIComponent(options.listing));
+    var baseURL = 'http://res.cloudinary.com/xinbenlv/image/upload/c_fill,g_north,g_center/';
     var urls = [];
-    for (let i = 0; i < this.data.listing.imageIds.length; ++i) {
-      urls.push(baseURL + this.data.listing.imageIds[i] + '.jpg');
+    for (let i = 0; i < listing.imageIds.length; ++i) {
+      urls.push(baseURL + listing.imageIds[i] + '.jpg');
     }
     this.setData({
+      listing: listing,
+      groups: app.globalData.groups,
       imageURLs: urls
     });
   },

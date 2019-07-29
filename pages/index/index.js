@@ -5,12 +5,20 @@ const hsyApiUrlBase =`https://haoshiyou-server-prod.herokuapp.com/api/HsyListing
 const listingLimit = 24;
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
-    hasListingInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    allListing: [],
     pageNumber: 0,
+    winWidth: 0,
+    winHeight: 0,
+    activeGroupId: null,
+    groups: {},
+    // {
+    //   "id": {
+    //     "name": "...",
+    //     "rect": ...,
+    //     "listings": [],
+    //   } 
+    // }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -19,9 +27,30 @@ Page({
     })
   },
   onLoad: function () {
-    console.log(app.globalData.userInfo)
+    console.log(app.globalData.userInfo);
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+    });
+    var groups = {};
+    for (var key in app.globalData.groups) {
+      var content = {
+        "name": app.globalData.groups[key],
+        "rect": null,
+        "listings": [],
+      };
+      groups[key] = content;
+    }
+    that.setData({
+      groups: groups,
+    });
     if (app.globalData.userInfo) {
-      this.setData({
+      that.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
@@ -29,7 +58,7 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        this.setData({
+        that.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
@@ -39,14 +68,14 @@ Page({
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo
-          this.setData({
+          that.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
         }
       })
     }
-    this.getAllListing()
+    this.getAllListing();
   },
   onClick: function(event) {
     var listing = encodeURIComponent(JSON.stringify((event.currentTarget.dataset.listing)));
@@ -132,16 +161,59 @@ Page({
       },
       success: res => {
         console.log(`getAllListing requested HSY api, res = `);
+        var groups = that.data.groups;
         for (let i = 0; i < res.data.length; ++i) {
-          res.data[i]['timeSinceModified'] = that.getTimeSinceModified(res.data[i].lastUpdated)
+          res.data[i]['timeSinceModified'] = that.getTimeSinceModified(res.data[i].lastUpdated);
+          let groupId = res.data[i].hsyGroupEnum;
+          groups[groupId].listings.push(res.data[i]); 
         }
-        var newAllListing = that.data.allListing;
-        newAllListing = newAllListing.concat(res.data);
         that.setData({
-          allListing: newAllListing
+          groups: groups,
         });
         console.log(res);
       }
     });
+  },
+  tabChange(e) {
+    var id = e.detail.currentItemId;
+    this.setActiveTab(id);
+  },
+  tabClick(e) {
+    var id = e.target.id;
+    this.setActiveTab(id);
+  },
+  setActiveTab: function(id) {
+    var group = this.data.groups[id];
+    var rect = group["rect"];
+    if (rect) {
+      this.animation.width(rect.width).translate(rect.left, 0);
+      this.setData({
+        activeGroupId: id,
+        indicatorAnim: this.animation.step().export()
+      })
+    }
+  },
+  onReady: function() {
+    var query = wx.createSelectorQuery().in(this),
+    that = this;
+    that.animation = wx.createAnimation();
+    var ids = Object.keys(this.data.groups);
+    for (let i = 0; i < ids.length; i++) {
+      var id = ids[i];
+      query.select('#'+id).boundingClientRect(function (rect) {
+        let id = ids[i];
+        let groups = that.data.groups;
+        let group = groups[id];
+        group.rect = rect;
+        groups[id] = group;
+        that.setData({
+          groups: groups
+        });
+        if (id == "SanFrancisco") {
+          that.setActiveTab(id);
+        }
+      })
+    }
+    query.exec();
   },
 })
