@@ -5,16 +5,16 @@
 <view class="flex-column" id="root-container">
   <view class="flex-row" id="tab-bar">
     <block wx:for="{{groups}}" wx:for-index='key'>
-      <text id="{{key}}" class="{{activeGroupId == key}} ? 'tab-item ' : 'tab-item-active'" bindtap='tabClick'>{{item.name}}</text>
+      <text id="{{key}}" class="{{activeGroupId == key}} ? 'tab-item ' : 'tab-item-active'" bindtap='onTabClicked'>{{item.name}}</text>
     </block>
     <view id="tab-indicator" animation="{{indicatorAnim}}"></view>
   </view>
 
-  <swiper class="swiper" current-item-id="{{activeGroupId}}" bindchange="tabChange">
+  <swiper class="swiper" current-item-id="{{activeGroupId}}" bindchange="onTabChanged">
     <block wx:for="{{groups}}" wx:for-index="key">
       <swiper-item item-id="{{key}}">
         <scroll-view scroll-y="true" class="scroll-view" bindscrolltolower="onReachBottom">
-          <view class="flex-row row-item" data-listing="{{listing}}" bindtap="onClick" wx:for="{{groups[key].listings}}" wx:for-item="listing">
+          <view class="flex-row row-item" data-listing="{{listing}}" bindtap="onListingClicked" wx:for="{{groups[key].listings}}" wx:for-item="listing">
             <template is="listing" data="{{...listing}}"/>
           </view>
         </scroll-view>

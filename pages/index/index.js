@@ -12,12 +12,13 @@ Page({
     winHeight: 0,
     activeGroupId: null,
     groups: {},
+    // Data strcture for groups:
     // {
     //   "id": {
     //     "name": "...",
     //     "rect": ...,
     //     "listings": [],
-    //   } 
+    //   }
     // }
   },
   //事件处理函数
@@ -77,7 +78,7 @@ Page({
     }
     this.getAllListing();
   },
-  onClick: function(event) {
+  onListingClicked: function(event) {
     var listing = encodeURIComponent(JSON.stringify((event.currentTarget.dataset.listing)));
     wx.navigateTo({
       url: '../detail/detail?listing=' + listing
@@ -165,7 +166,7 @@ Page({
         for (let i = 0; i < res.data.length; ++i) {
           res.data[i]['timeSinceModified'] = that.getTimeSinceModified(res.data[i].lastUpdated);
           let groupId = res.data[i].hsyGroupEnum;
-          groups[groupId].listings.push(res.data[i]); 
+          groups[groupId].listings.push(res.data[i]);
         }
         that.setData({
           groups: groups,
@@ -174,11 +175,11 @@ Page({
       }
     });
   },
-  tabChange(e) {
+  onTabChanged(e) {
     var id = e.detail.currentItemId;
     this.setActiveTab(id);
   },
-  tabClick(e) {
+  onTabClicked(e) {
     var id = e.target.id;
     this.setActiveTab(id);
   },
