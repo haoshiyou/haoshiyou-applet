@@ -5,7 +5,7 @@
 <view class="flex-column" id="root-container">
   <view class="flex-row" id="tab-bar">
     <block wx:for="{{groups}}" wx:for-index='key'>
-      <text id="{{key}}" class="{{activeGroupId == key}} ? 'tab-item ' : 'tab-item-active'" bindtap='onTabClicked'>{{item.name}}</text>
+      <text id="{{key}}" class="{{activeGroupId == key ? 'tab-item-active' : 'tab-item'}}" bindtap='onTabClicked'>{{item.name}}</text>
     </block>
     <view id="tab-indicator" animation="{{indicatorAnim}}"></view>
   </view>

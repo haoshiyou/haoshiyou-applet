@@ -14,10 +14,10 @@ Page({
     groups: {},
     // Data strcture for groups:
     // {
-    //   "id": {
-    //     "name": "...",
-    //     "rect": ...,
-    //     "listings": [],
+    //   'id': {
+    //     'name': '...',
+    //     'rect': ...,
+    //     'listings': [],
     //   }
     // }
   },
@@ -41,9 +41,9 @@ Page({
     var groups = {};
     for (var key in app.globalData.groups) {
       var content = {
-        "name": app.globalData.groups[key],
-        "rect": null,
-        "listings": [],
+        'name': app.globalData.groups[key],
+        'rect': null,
+        'listings': [],
       };
       groups[key] = content;
     }
@@ -111,24 +111,24 @@ Page({
     var minC = diffValue / minute;
     if (monthC >= 1) {
       if (monthC <= 12)
-        result = "" + parseInt(monthC) + "月前";
+        result = '' + parseInt(monthC) + '月前';
       else {
-        result = "" + parseInt(monthC / 12) + "年前";
+        result = '' + parseInt(monthC / 12) + '年前';
       }
     }
     else if (weekC >= 1) {
-      result = "" + parseInt(weekC) + "周前";
+      result = '' + parseInt(weekC) + '周前';
     }
     else if (dayC >= 1) {
-      result = "" + parseInt(dayC) + "天前";
+      result = '' + parseInt(dayC) + '天前';
     }
     else if (hourC >= 1) {
-      result = "" + parseInt(hourC) + "小时前";
+      result = '' + parseInt(hourC) + '小时前';
     }
     else if (minC >= 1) {
-      result = "" + parseInt(minC) + "分钟前";
+      result = '' + parseInt(minC) + '分钟前';
     } else {
-      result = "刚刚";
+      result = '刚刚';
     }
     return result;
   },
@@ -145,19 +145,19 @@ Page({
     wx.request({
       url: hsyApiUrlBase,
       header: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       data: {
-        "filter": {
-          "where": {
-            "price": {
-              "lt": 5000
+        'filter': {
+          'where': {
+            'price': {
+              'lt': 5000
             }
           },
-          "order": "latestUpdatedOrBump DESC",
-          "limit": listingLimit,
-          "offset": listingLimit * that.data.pageNumber,
-          "include": ["interactions", "owner"]
+          'order': 'latestUpdatedOrBump DESC',
+          'limit': listingLimit,
+          'offset': listingLimit * that.data.pageNumber,
+          'include': ['interactions', 'owner']
         }
       },
       success: res => {
@@ -167,6 +167,7 @@ Page({
           res.data[i]['timeSinceModified'] = that.getTimeSinceModified(res.data[i].lastUpdated);
           let groupId = res.data[i].hsyGroupEnum;
           groups[groupId].listings.push(res.data[i]);
+          groups['All'].listings.push(res.data[i]);
         }
         that.setData({
           groups: groups,
@@ -185,7 +186,7 @@ Page({
   },
   setActiveTab: function(id) {
     var group = this.data.groups[id];
-    var rect = group["rect"];
+    var rect = group['rect'];
     if (rect) {
       this.animation.width(rect.width).translate(rect.left, 0);
       this.setData({
@@ -210,7 +211,7 @@ Page({
         that.setData({
           groups: groups
         });
-        if (id == "SanFrancisco") {
+        if (id == 'All') {
           that.setActiveTab(id);
         }
       })

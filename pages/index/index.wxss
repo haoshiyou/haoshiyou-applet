@@ -18,12 +18,14 @@ page, #root-container {
 .tab-item {
   width: 120rpx;
   text-align: center;
-  color: #e0e0e0;
   font-weight: 400;
 }
 
 .tab-item-active {
+  width: 120rpx;
+  text-align: center;
   color: #fff;
+  font-weight: bold;
 }
 
 #tab-indicator {
